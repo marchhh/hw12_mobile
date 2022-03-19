@@ -201,7 +201,11 @@ class _LoginPageState extends State<LoginPage> {
             Navigator.push(
               context,
               MaterialPageRoute(builder: (context) => const HomePage()),
+
             );
+            setState(() {
+              _string = "";
+            });
           } else if (_password != _string && _string.length == 6) {
             showDialog(
                 context: context,
@@ -209,7 +213,7 @@ class _LoginPageState extends State<LoginPage> {
                 builder: (BuildContext context) {
                   return AlertDialog(
                     title: Text('Incorrect PIN'),
-                    content: Text('กรุณากรอกใหม่'),
+                    content: Text('Please try again'),
                     actions: [
                       ElevatedButton(
                         onPressed: () {
@@ -220,6 +224,9 @@ class _LoginPageState extends State<LoginPage> {
                     ],
                   );
                 });
+            setState(() {
+              _string = "";
+            });
           }
         },
         borderRadius: BorderRadius.circular(LoginPage.buttonSize / 2),
